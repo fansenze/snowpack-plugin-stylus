@@ -1,0 +1,27 @@
+{
+  "name": "snowpack-plugin-stylus",
+  "version": "1.0.0",
+  "description": "Use the Stylus compiler to build .styl files from source",
+  "main": "plugin.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fansenze/snowpack-plugin-stylus.git"
+  },
+  "keywords": [
+    "snowpack",
+    "stylus",
+    "css",
+    "style",
+    "snowpack-plugin"
+  ],
+  "author": "senze.fan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fansenze/snowpack-plugin-stylus/issues"
+  },
+  "homepage": "https://github.com/fansenze/snowpack-plugin-stylus#readme",
+  "dependencies": {
+    "stylus": "^0.54.8"
+  }
+}
