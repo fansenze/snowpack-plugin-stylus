@@ -20,4 +20,19 @@ add this plugin to your Snowpack config:
 }
 ```
 
+### Use Custom Stylus Compile Options
+**snowpack.config.js**
+```javascript
+const path = require("path");
+
+module.exports = {
+  // ...another config
+  "plugins": [
+    [
+      "snowpack-plugin-stylus",
+      { /* stylus render options */ }
+    ]
+  ]
+}
+```
 
