@@ -1,9 +1,9 @@
-const proxyquire = require('proxyquire');
-const sinon = require('sinon');
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
+import * as proxyquire from 'proxyquire';
+import * as sinon from 'sinon';
+import * as chai from 'chai';
+import * as sinonChai from 'sinon-chai';
+import * as chaiAsPromised from 'chai-as-promised';
 chai.use(sinonChai);
-const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
@@ -13,9 +13,9 @@ describe('plugin', () => {
         renderStylus: sinon.stub()
     };
 
-    const plugin = proxyquire.noCallThru()('../../plugin', {
-        './src/load-file': mocks.loadFile,
-        './src/render-stylus': mocks.renderStylus
+    const plugin = proxyquire.noCallThru()('../plugin', {
+        './load-file': { loadFile: mocks.loadFile },
+        './render-stylus': { renderStylus: mocks.renderStylus }
     });
 
     afterEach(() => {

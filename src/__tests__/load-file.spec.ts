@@ -1,9 +1,10 @@
-const proxyquire = require('proxyquire');
-const sinon = require('sinon');
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
+import * as proxyquire from 'proxyquire';
+import * as sinon from 'sinon';
+import * as chai from 'chai';
+import * as sinonChai from 'sinon-chai';
+import * as chaiAsPromised from 'chai-as-promised';
+
 chai.use(sinonChai);
-const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
@@ -11,7 +12,7 @@ describe('load-file', () => {
     const fsMock = {
         readFile: sinon.stub()
     };
-    const loadFile = proxyquire.noCallThru()('../load-file', {
+    const { loadFile } = proxyquire.noCallThru()('../load-file', {
         fs: fsMock
     });
 

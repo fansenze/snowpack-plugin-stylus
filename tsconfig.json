@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "lib": ["es2020", "dom"],
+    "strict": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "src/plugin.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

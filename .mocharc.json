@@ -1,0 +1,8 @@
+{
+  "max-old-space-size": 4096,
+  "extension": ["js", "ts"],
+  "require": "ts-node/register",
+  "reporter": "spec",
+  "timeout": 10000,
+  "exit": true
+}
