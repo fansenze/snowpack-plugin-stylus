@@ -1,25 +1,6 @@
-const compiler = require('stylus');
-const fs = require('fs');
-
 const pkg = require('./package.json');
-
-const render = async (filepath, options) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filepath, { encoding: 'utf-8' }, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        compiler.render(data, { ...options, filename: filepath }, (err, result) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(result);
-          }
-        });
-      }
-    });
-  });
-}
+const loadFile = require('./src/load-file');
+const renderStylus = require('./src/render-stylus');
 
 module.exports = function plugin(snowpackConfig, options = {}) {
   return {
@@ -30,7 +11,8 @@ module.exports = function plugin(snowpackConfig, options = {}) {
     },
     async load({ filePath }) {
       try {
-        const result = await render(filePath, options);
+        const fileContent = await loadFile(filePath);
+        const result = await renderStylus(fileContent, { ...options, filename: filePath });
         return {
           '.css': result,
         };
