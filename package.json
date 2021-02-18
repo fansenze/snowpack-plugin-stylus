@@ -7,7 +7,6 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "husky install",
     "dev": "tsc -w",
     "build": "tsc",
     "test": "jest",
