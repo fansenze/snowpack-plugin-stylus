@@ -13,7 +13,8 @@
     "test": "jest",
     "cov": "jest --coverage",
     "lint": "eslint ./src/** --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "release": "release-it --ci"
   },
   "repository": {
     "type": "git",
