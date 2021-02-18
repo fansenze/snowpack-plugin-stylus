@@ -14,7 +14,7 @@
     "cov": "jest --coverage",
     "lint": "eslint ./src/** --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "release": "release-it --ci"
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
