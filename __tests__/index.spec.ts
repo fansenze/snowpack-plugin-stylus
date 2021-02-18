@@ -30,7 +30,7 @@ describe('test src/index.ts', () => {
       isSSR: false,
     };
     const css = fs.readFileSync(filepath, 'utf-8') + '\n';
-    const loadResult = await plugin.load(loadOptions);
+    const loadResult = await plugin.load?.(loadOptions);
 
     expect(loadResult).toStrictEqual({
       '.css': {
@@ -42,7 +42,7 @@ describe('test src/index.ts', () => {
   it('plugin.load(): file not exists', async () => {
     const spyConsole = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-    const filepath = path.join(__dirname, './fixtures/b.styl');
+    const filepath = path.join(__dirname, './fixtures/c.styl');
     const plugin = main(snowpackConfig, options);
     const loadOptions: PluginLoadOptions = {
       filePath: filepath,
@@ -54,11 +54,39 @@ describe('test src/index.ts', () => {
 
     expect(spyConsole).not.toBeCalled();
 
-    const loadResult = await plugin.load(loadOptions);
+    const loadResult = await plugin.load?.(loadOptions);
 
     expect(loadResult).toStrictEqual(undefined);
     expect(spyConsole).toBeCalledTimes(1);
 
     spyConsole.mockReset();
+  });
+
+  it('calls markChanged for importers of file when onChange is called',async () => {
+    const filePathA = path.join(__dirname, './fixtures/a.styl');
+    const filePathB = path.join(__dirname, './fixtures/b.styl');
+
+    const plugin = main(snowpackConfig, options);
+    const spyMarkChanged = jest.fn();
+    plugin.markChanged = spyMarkChanged;
+
+    const loadFile = async (filePath: string) => {
+      const loadOptions: PluginLoadOptions = {
+        filePath,
+        fileExt: path.extname(filePath),
+        isDev: false,
+        isHmrEnabled: false,
+        isSSR: false,
+      };
+      return plugin.load?.(loadOptions);
+    };
+
+    await loadFile(filePathA);
+    await loadFile(filePathB);
+
+    plugin.onChange?.({ filePath: filePathA })
+
+    expect(spyMarkChanged).toBeCalledTimes(1);
+    expect(spyMarkChanged).toBeCalledWith(filePathB);
   });
 });
