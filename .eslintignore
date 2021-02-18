@@ -1,6 +1,8 @@
 node_modules
+__tests__/
 lib/
 dist/
+
 .tea
 .node
 .happypack

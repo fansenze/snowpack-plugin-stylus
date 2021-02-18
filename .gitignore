@@ -89,4 +89,5 @@ packages/*/lib
 
 # test files
 __test__*
+__tests__/fixtures/**/build
 .history

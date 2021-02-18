@@ -26,6 +26,6 @@
   "exclude": [
     "**/__tests__/**/*.spec.ts",
     "**/node_modules/**",
-    "**/dist/**",
+    "**/dist/**"
   ]
 }

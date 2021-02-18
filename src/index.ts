@@ -3,7 +3,7 @@ import { SnowpackPluginFactory } from 'snowpack';
 import { Options } from './interface';
 import { render } from './render';
 
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 
 const plugin: SnowpackPluginFactory<Options> = (snowpackConfig, options = {}) => {
   return {
