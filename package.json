@@ -1,6 +1,6 @@
 {
   "name": "snowpack-plugin-stylus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Use the Stylus compiler to build .styl files from source",
   "main": "dist/index.js",
   "files": [
