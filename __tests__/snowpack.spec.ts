@@ -8,6 +8,12 @@ const project = path.join(__dirname, 'fixtures/project');
 const inputStyleFile = path.join(project, 'src/a.styl');
 const pluginMain = path.join(root, 'dist/index.js');
 
+if (!fs.existsSync(pluginMain)) {
+  cp.spawnSync('npm', ['run', 'build'], {
+    cwd: root,
+  });
+}
+
 const config = createConfiguration({
   root: project,
   plugins: [pluginMain],
@@ -17,12 +23,6 @@ const config = createConfiguration({
 });
 
 logger.level = 'silent';
-
-if (!fs.existsSync(pluginMain)) {
-  cp.spawnSync('npm', ['run', 'build'], {
-    cwd: root,
-  });
-}
 
 describe('test by snowpack', () => {
   it('load()', async () => {

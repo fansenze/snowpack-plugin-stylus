@@ -7,7 +7,6 @@ import { render } from '../src/render';
 describe('test src/render.ts', () => {
   it('render(): called with stylus', async () => {
     const spy = jest.spyOn(stylus, 'render');
-    // const css = `.container { color: '#000'; }`;
     const filepath = path.join(__dirname, './fixtures/a.styl');
     const css = fs.readFileSync(filepath, 'utf-8');
     const options: Options = { filename: filepath };
